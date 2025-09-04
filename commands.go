@@ -1,6 +1,6 @@
 package main
 
-import "errors"
+import "fmt"
 
 type command struct {
 	Name string
@@ -18,8 +18,8 @@ func (c *commands) register(name string, f func(*state, command) error) {
 func (c *commands) run(s *state, cmd command) error {
 	callback, exists := c.registeredCommands[cmd.Name]
 	if !exists {
-		return errors.New("command not found")
-	}	
+		return fmt.Errorf("Command '%s' not found", cmd.Name)
+	}
 
 	return callback(s, cmd)
 }
