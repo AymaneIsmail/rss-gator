@@ -56,7 +56,7 @@ func addFeedHandler(s *state, cmd command, user database.User) error {
 
     feed, err := s.db.CreateFeed(ctx, params)
     if err != nil {
-        return fmt.Errorf("Cannot create feed")
+        return fmt.Errorf("Cannot create feed %v", err)
     }
 
 	createFeedFollowParams := database.CreateFeedFollowParams{
